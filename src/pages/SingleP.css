@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500&display=swap');
+
+.sp-page {
+  background-color: #f0ebe3;
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+  padding-top: 80px;
+}
+
+.sp-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: #888780;
+  background-color: #f0ebe3;
+  padding-top: 80px;
+}
+
+/* ── Main product layout ── */
+.sp-container {
+  display: flex;
+  gap: 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 3rem;
+  align-items: flex-start;
+}
+
+.sp-image-block {
+  flex: 0 0 55%;
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: #e8e2d9;
+}
+
+.sp-image {
+  width: 100%;
+  height: 620px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.sp-image:hover {
+  transform: scale(1.03);
+}
+
+/* ── Details ── */
+.sp-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-top: 1rem;
+}
+
+.sp-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8b7355;
+  margin: 0;
+}
+
+.sp-name {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 700;
+  color: #1e1c1a;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.sp-price {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 400;
+  color: #2c2c2a;
+  margin: 0;
+}
+
+.sp-divider {
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.08);
+  margin: 0.5rem 0;
+}
+
+.sp-description {
+  font-size: 15px;
+  font-weight: 300;
+  color: #4a4642;
+  line-height: 1.8;
+  margin: 0;
+}
+
+.sp-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.sp-meta-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sp-meta-label {
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #888780;
+}
+
+.sp-meta-value {
+  font-size: 14px;
+  font-weight: 500;
+  color: #2c2c2a;
+}
+
+.sp-add-btn {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background-color: #2c2c2a;
+  color: #e3dcd2;
+  border: none;
+  border-radius: 999px;
+  padding: 16px 32px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.sp-add-btn:hover {
+  background-color: #444441;
+  transform: translateY(-2px);
+}
+
+/* ── Related products ── */
+.sp-related {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 3rem 5rem;
+}
+
+.sp-related-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: #1e1c1a;
+  margin: 0 0 2rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 992px) {
+  .sp-container {
+    flex-direction: column;
+    gap: 2.5rem;
+    padding: 2.5rem 2rem;
+  }
+
+  .sp-image-block {
+    flex: none;
+    width: 100%;
+  }
+
+  .sp-image {
+    height: 420px;
+  }
+
+  .sp-related {
+    padding: 1.5rem 2rem 4rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .sp-container {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .sp-image {
+    height: 300px;
+  }
+
+  .sp-related {
+    padding: 1rem 1.25rem 3rem;
+  }
+}

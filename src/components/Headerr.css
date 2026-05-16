@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+.header-background {
+  background-image: url('/giulia-bertelli-9yPQysGoE9I-unsplash.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Dark overlay */
+.header-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+/* Content above overlay */
+.header-message {
+  position: relative;
+  z-index: 1;
+  width: 50%;
+  max-width: 600px;
+  padding: 40px;
+  margin-left: 10%;
+}
+
+/* Subtitle */
+.message-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #e8e4d9;
+  margin-bottom: 1rem;
+  display: inline-block;
+}
+
+/* Main Title */
+.message-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 4rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #fff;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.01em;
+}
+
+/* Button */
+.productBtn {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #2c2c2a;
+  background-color: #e8e4d9;
+  text-decoration: none;
+  padding: 12px 32px;
+  border-radius: 40px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.productBtn:hover {
+  background-color: #d4cfc2;
+  transform: translateY(-3px);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .header-message {
+    width: 60%;
+    margin-left: 8%;
+    padding: 30px;
+  }
+  
+  .message-title {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-background {
+    min-height: 80vh;
+  }
+  
+  .header-message {
+    width: 80%;
+    margin-left: 5%;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .message-title {
+    font-size: 2.5rem;
+  }
+  
+  .message-subtitle {
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+  }
+  
+  .productBtn {
+    padding: 10px 24px;
+    font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .header-message {
+    width: 90%;
+    margin-left: 5%;
+    padding: 15px;
+  }
+  
+  .message-title {
+    font-size: 2rem;
+  }
+  
+  .message-subtitle {
+    font-size: 0.55rem;
+  }
+}
