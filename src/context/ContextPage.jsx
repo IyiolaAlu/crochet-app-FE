@@ -20,7 +20,7 @@ const ContextPage = ({ children }) => {
 
   const userAuth = async () => {
     try {
-      const res = await axios.get("http://localhost:4000/api/users/me", {
+      const res = await axios.get("https://crochet-app-backend.onrender.com/api/users/me", {
         withCredentials: true,
       });
 

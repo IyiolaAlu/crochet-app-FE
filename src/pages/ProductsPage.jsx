@@ -79,7 +79,7 @@ const ProductsPage = () => {
     setLoading(true);
     try {
       const res = await fetch(
-        `http://localhost:4000/api/products/${editingId}`,
+        `http://ost:4000/api/products/${editingId}`,
         {
           method: "PUT",
           body: JSON.stringify({
