@@ -32,7 +32,7 @@ const ProductsPage = () => {
   const [error, seterror] = useState(null);
 
   const deleteProduct = async (_id) => {
-    const res = await fetch(`http://localhost:4000/api/products/${_id}`, {
+    const res = await fetch(`https://crochet-app-backend.onrender.com/api/products/${_id}`, {
       method: "DELETE",
       credentials: "include",
     });

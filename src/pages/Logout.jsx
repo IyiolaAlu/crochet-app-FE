@@ -9,7 +9,7 @@ const Logout = () => {
     const navigate = useNavigate()
     const handleLogout = async () => {
         try {
-            const res = await axios.post('http://localhost:4000/api/users/logout',{},{
+            const res = await axios.post('https://crochet-app-backend.onrender.com/api/users/logout',{},{
                 withCredentials: true
             })
             if (res.data) {

@@ -21,7 +21,7 @@ const SingleProduct = () => {
     setLoading(true)
     const fetchData = async () => {
       try {
-        const res = await fetch(`http://localhost:4000/api/products/${id}`, { method: 'GET' })
+        const res = await fetch(`https://crochet-app-backend.onrender.com/api/products/${id}`, { method: 'GET' })
         const data = await res.json()
         if (res.ok) { setLoading(false); seterror(null); setProduct(data) }
         if (!res.ok) { setLoading(false); seterror(data.error) }

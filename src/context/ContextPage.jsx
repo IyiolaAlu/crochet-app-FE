@@ -52,7 +52,7 @@ const ContextPage = ({ children }) => {
     const fetchProducts = async () => {
       setLoading(true);
       try {
-        const res = await fetch("http://localhost:4000/api/products");
+        const res = await fetch("https://crochet-app-backend.onrender.com/api/products");
         const data = await res.json();
 
         if (res.ok) {

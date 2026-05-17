@@ -14,7 +14,7 @@ const Signup = () => {
     e.preventDefault()
     setLoading(true)
     try {
-      const res = await fetch('http://localhost:4000/api/users/signup', {
+      const res = await fetch('https://crochet-app-backend.onrender.com/api/users/signup', {
         method: 'POST',
         body: JSON.stringify({
           firstName: form.firstName, lastName: form.lastName,

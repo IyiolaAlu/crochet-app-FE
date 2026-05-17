@@ -33,7 +33,7 @@ const FormPage = () => {
     setLoading(true);
     setSuccess(false);
     try {
-      const res = await fetch("http://localhost:4000/api/products", {
+      const res = await fetch("https://crochet-app-backend.onrender.com/api/products", {
         method: "POST",
         body: JSON.stringify(newForm),
         headers: { "Content-Type": "application/json" },
