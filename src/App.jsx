@@ -7,6 +7,7 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Main from "./components/Main";
 import HomePage from "./pages/HomePage";
+import FormPage from "./pages/FormPage"
 
 
 const App = () => {
@@ -19,6 +20,7 @@ const App = () => {
             <Route path="product" element={<ProductsPage/>}/>
             <Route path="signup" element={<Signup/>}/>
             <Route path="login" element={<Login/>}/>
+            <Route path="form" element={<FormPage/>}/>
             <Route path="main" element={<Main/>}/>
             <Route path="product/:id" element={<SingleProduct/>}/>
         </Routes>

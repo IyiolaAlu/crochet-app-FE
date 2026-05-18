@@ -82,7 +82,7 @@ console.log("Navbar - user:", user);
             <ul className="navbar-nav me-auto mb-2 mb-lg-0 align-items-center">
               {user?.isAdmin && (
                 <li className="nav-item">
-                  <Link to="/" className="nav-link">Form</Link>
+                  <Link to="/form" className="nav-link">Form</Link>
                 </li>
               )}
               <li className="nav-item">
