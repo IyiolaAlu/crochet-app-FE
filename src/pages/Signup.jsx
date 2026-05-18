@@ -61,10 +61,11 @@ const Signup = () => {
     }
     
     if (res.ok) {
-      await userAuth();
-      setLoading(false);
-      seterror(null);
-      navigate('/product');
+     localStorage.setItem("token", data.token)  // 👈 add this
+  await userAuth()
+  navigate('/product')
+  setLoading(false)
+  seterror(null)
     }
   } catch (error) {
     setLoading(false)

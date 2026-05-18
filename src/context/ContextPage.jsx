@@ -20,26 +20,28 @@ const ContextPage = ({ children }) => {
   }, [cart]);
 
   const userAuth = async () => {
-    try {
-      const res = await axios.get("https://crochet-app-backend.onrender.com/api/users/me", {
-        withCredentials: true,
-      })
-
-      console.log("2. Response status:", res.status);
-    console.log("3. Response data:", res.data);
-    console.log("4. Response data type:", typeof res.data);
-      if (res.data) {
-        setuser(res.data);
-        setIsLoggedIn(true);
-      } else {
-        setuser(null);
-        setIsLoggedIn(false);
-      }
-    } catch (error) {
-      setuser(null);
-      setIsLoggedIn(false); 
+  const token = localStorage.getItem('token')
+  if (!token) {
+    setuser(null)
+    setIsLoggedIn(false)
+    return
+  }
+  try {
+    const res = await axios.get("https://crochet-app-backend.onrender.com/api/users/me", {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+    if (res.data) {
+      setuser(res.data)
+      setIsLoggedIn(true)
+    } else {
+      setuser(null)
+      setIsLoggedIn(false)
     }
-  };
+  } catch (error) {
+    setuser(null)
+    setIsLoggedIn(false)
+  }
+}
   
   useEffect(() => {
     userAuth();
@@ -132,6 +134,8 @@ const ContextPage = ({ children }) => {
         userAuth,
         isLoggedIn,
         user,
+        setuser,
+        setIsLoggedIn
       }}
     >
       {children}
