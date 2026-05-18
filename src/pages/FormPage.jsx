@@ -1,10 +1,11 @@
 import React, { useContext, useState } from "react";
 import { productContext } from "../context/ContextPage";
+import { motion } from "motion/react";
 import './Form.css'
 import NavBar from "../components/NavBar";
 
 const FormPage = () => {
-  const { loading, setLoading, products, setProducts } = useContext(productContext);
+  const { loading, setLoading, products, setProducts, dotVariants, containerVariants } = useContext(productContext);
   const [error, seterror] = useState(null);
   const [success, setSuccess] = useState(false);
 
@@ -60,6 +61,24 @@ const FormPage = () => {
       seterror(error.message);
     }
   };
+
+  // Show loading overlay when adding product
+  if (loading) {
+    return (
+      <div className="loading-overlay">
+        <motion.div
+          variants={containerVariants}
+          animate="pulse"
+          className="loading-container"
+        >
+          <motion.div className="loading-dot" variants={dotVariants} />
+          <motion.div className="loading-dot" variants={dotVariants} />
+          <motion.div className="loading-dot" variants={dotVariants} />
+        </motion.div>
+        <p className="loading-text">Adding product...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="form-page">
@@ -129,8 +148,8 @@ const FormPage = () => {
             />
           </div>
 
-          <button onClick={addProduct} className="form-submit-btn" disabled={loading}>
-            {loading ? 'Adding Product...' : 'Add Product'}
+          <button onClick={addProduct} className="form-submit-btn">
+            Add Product
           </button>
         </div>
       </div>

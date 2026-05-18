@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from "react-router-dom"
 import { productContext } from '../context/ContextPage';
 import { useContext } from 'react';
+import { motion } from "motion/react"
 import './Auth.css'
 
 const Login = () => {
@@ -9,7 +10,7 @@ const Login = () => {
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
   const [form, setform] = useState({ email: '', password: '' })
-  const { userAuth } = useContext(productContext)
+  const { userAuth, dotVariants, containerVariants } = useContext(productContext)
 
   const login = async (e) => {
     e.preventDefault()
@@ -36,6 +37,24 @@ const Login = () => {
       setLoading(false)
       seterror(error.message)
     }
+  }
+
+  // Full-screen loading overlay
+  if (loading) {
+    return (
+      <div className="loading-overlay">
+        <motion.div
+          variants={containerVariants}
+          animate="pulse"
+          className="loading-container"
+        >
+          <motion.div className="loading-dot" variants={dotVariants} />
+          <motion.div className="loading-dot" variants={dotVariants} />
+          <motion.div className="loading-dot" variants={dotVariants} />
+        </motion.div>
+        <p className="loading-text">Signing in...</p>
+      </div>
+    )
   }
 
   return (
@@ -76,7 +95,7 @@ const Login = () => {
             </div>
 
             <button type="submit" className="auth-submit-btn" disabled={loading}>
-              {loading ? 'Signing in...' : 'Sign In'}
+              Sign In
             </button>
           </form>
 

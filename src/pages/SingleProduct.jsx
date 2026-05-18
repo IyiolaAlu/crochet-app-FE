@@ -4,12 +4,13 @@ import { productContext } from '../context/ContextPage'
 import { useContext } from 'react'
 import ProductCard from '../components/ProductCard'
 import Footer from '../components/Footer'
+import { motion } from "motion/react"
 import './SingleP.css'
 
 const SingleProduct = () => {
   const { id } = useParams()
   const [error, seterror] = useState(null)
-  const { products, setLoading, loading, addToCart } = useContext(productContext)
+  const { products, setLoading, loading, addToCart, dotVariants, containerVariants } = useContext(productContext)
   const [product, setProduct] = useState(null)
 
   const nairaFormatter = new Intl.NumberFormat("en-US", {
@@ -37,9 +38,33 @@ const SingleProduct = () => {
     ? products.filter((item) => item._id !== product._id).slice(0, 4)
     : []
 
-  if (loading) return <div className="sp-loading">Loading...</div>
-  if (error) return <div className="sp-loading">Error loading product.</div>
-  if (!product) return <div className="sp-loading">Product not found.</div>
+  // Updated loading state with animated dots
+  if (loading) return (
+    <div className="loading-overlay">
+      <motion.div
+        variants={containerVariants}
+        animate="pulse"
+        className="loading-container"
+      >
+        <motion.div className="loading-dot" variants={dotVariants} />
+        <motion.div className="loading-dot" variants={dotVariants} />
+        <motion.div className="loading-dot" variants={dotVariants} />
+      </motion.div>
+      <p className="loading-text">Loading product...</p>
+    </div>
+  )
+  
+  if (error) return (
+    <div className="loading-overlay">
+      <p className="loading-text">Error loading product.</p>
+    </div>
+  )
+  
+  if (!product) return (
+    <div className="loading-overlay">
+      <p className="loading-text">Product not found.</p>
+    </div>
+  )
 
   return (
     <>

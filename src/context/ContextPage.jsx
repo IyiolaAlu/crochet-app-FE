@@ -14,6 +14,7 @@ const ContextPage = ({ children }) => {
 
   const [user, setuser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
@@ -27,41 +28,35 @@ const ContextPage = ({ children }) => {
       if (res.data) {
         setuser(res.data.user);
         setIsLoggedIn(true);
-        setLoading(false);
       } else {
         setuser(null);
         setIsLoggedIn(false);
-        setLoading(false);
       }
     } catch (error) {
       setuser(null);
       setIsLoggedIn(false); 
-    } finally {
-      setLoading(false)
     }
   };
+  
   useEffect(() => {
     userAuth();
   }, []);
-
-  
 
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
-      setLoading(true);
       try {
         const res = await fetch("https://crochet-app-backend.onrender.com/api/products");
         const data = await res.json();
 
         if (res.ok) {
-          setLoading(false);
           setProducts(data);
         }
       } catch (error) {
-        setLoading(false);
         console.log(error.message);
+      } finally {
+        setLoading(false);
       }
     };
     fetchProducts();
@@ -94,51 +89,50 @@ const ContextPage = ({ children }) => {
   };
 
   const dotVariants = {
-        pulse: {
-            scale: [1, 1.5, 1],
-            transition: {
-                duration: 1.2,
-                repeat: Infinity,
-                ease: "easeInOut",
-            },
-        },
-    }
+    pulse: {
+      scale: [1, 1.5, 1],
+      transition: {
+        duration: 1.2,
+        repeat: Infinity,
+        ease: "easeInOut",
+      },
+    },
+  }
 
-    const containerVariants = {
-        pulse: {
-            transition: {
-                staggerChildren: 0.2,
-            },
-        },
-    }
+  const containerVariants = {
+    pulse: {
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  }
 
   useEffect(() => {
     console.log(cart);
   }, [cart]);
+  
   return (
-    <>
-      <productContext.Provider
-        value={{
-          dotVariants,
-          containerVariants,
-          loading,
-          search,
-          setsearch,
-          filteredArray,
-          setLoading,
-          products,
-          setProducts,
-          cart,
-          setCart,
-          addToCart,
-          userAuth,
-          isLoggedIn,
-          user,
-        }}
-      >
-        {children}
-      </productContext.Provider>
-    </>
+    <productContext.Provider
+      value={{
+        dotVariants,
+        containerVariants,
+        loading,
+        search,
+        setsearch,
+        filteredArray,
+        setLoading,
+        products,
+        setProducts,
+        cart,
+        setCart,
+        addToCart,
+        userAuth,
+        isLoggedIn,
+        user,
+      }}
+    >
+      {children}
+    </productContext.Provider>
   );
 };
 

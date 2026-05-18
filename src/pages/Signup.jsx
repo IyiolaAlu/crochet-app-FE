@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from "react-router-dom"
+import { motion } from "motion/react"
 import './Auth.css'
 
 const Signup = () => {
@@ -9,6 +10,26 @@ const Signup = () => {
   const [form, setform] = useState({
     firstName: '', lastName: '', email: '', password: ''
   })
+
+  // Dot animation variants
+  const dotVariants = {
+    pulse: {
+      scale: [1, 1.5, 1],
+      transition: {
+        duration: 1.2,
+        repeat: Infinity,
+        ease: "easeInOut",
+      },
+    },
+  }
+
+  const containerVariants = {
+    pulse: {
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  }
 
   const signUp = async (e) => {
     e.preventDefault()
@@ -30,6 +51,24 @@ const Signup = () => {
       setLoading(false)
       seterror(error.message)
     }
+  }
+
+  // Show loading overlay when creating account
+  if (loading) {
+    return (
+      <div className="loading-overlay">
+        <motion.div
+          variants={containerVariants}
+          animate="pulse"
+          className="loading-container"
+        >
+          <motion.div className="loading-dot" variants={dotVariants} />
+          <motion.div className="loading-dot" variants={dotVariants} />
+          <motion.div className="loading-dot" variants={dotVariants} />
+        </motion.div>
+        <p className="loading-text">Creating your account...</p>
+      </div>
+    )
   }
 
   return (
@@ -87,8 +126,8 @@ const Signup = () => {
               <p className="auth-hint">Must be at least 6 characters</p>
             </div>
 
-            <button type="submit" className="auth-submit-btn" disabled={loading}>
-              {loading ? 'Creating Account...' : 'Create Account'}
+            <button type="submit" className="auth-submit-btn">
+              Create Account
             </button>
           </form>
 
