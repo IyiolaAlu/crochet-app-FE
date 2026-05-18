@@ -55,6 +55,10 @@ const NavBar = () => {
     return total + item.price * item.quantity;
   }, 0);
 
+  
+console.log("Navbar - isLoggedIn:", isLoggedIn);
+console.log("Navbar - user:", user);
+
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-custom position-fixed z-2 w-100">

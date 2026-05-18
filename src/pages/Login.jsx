@@ -23,31 +23,32 @@ const Login = () => {
         credentials: "include"
       })
       const data = await res.json()
-      if (!res.ok) { setLoading(false); seterror(data.errors) }
-      if (res.ok) { setLoading(false); seterror(null) }
-      if (data.user) {
-        await userAuth()
-        navigate('/product')
-        setLoading(false)
-        seterror(null)
-      } else {
-        navigate('/login')
+      
+      console.log("Login response:", data);
+
+      if (!res.ok) { 
+        setLoading(false); 
+        seterror(data.errors || "Login failed")
+        return;
+      }
+      
+      if (res.ok) {
+        // ✅ Wait for userAuth to complete
+        await userAuth();
+        setLoading(false);
+        seterror(null);
+        navigate('/product');
       }
     } catch (error) {
-      setLoading(false)
-      seterror(error.message)
+      setLoading(false);
+      seterror(error.message);
     }
   }
 
-  // Full-screen loading overlay
   if (loading) {
     return (
       <div className="loading-overlay">
-        <motion.div
-          variants={containerVariants}
-          animate="pulse"
-          className="loading-container"
-        >
+        <motion.div variants={containerVariants} animate="pulse" className="loading-container">
           <motion.div className="loading-dot" variants={dotVariants} />
           <motion.div className="loading-dot" variants={dotVariants} />
           <motion.div className="loading-dot" variants={dotVariants} />
@@ -94,7 +95,7 @@ const Login = () => {
               {error?.password && <p className="auth-error">{error.password}</p>}
             </div>
 
-            <button type="submit" className="auth-submit-btn" disabled={loading}>
+            <button type="submit" className="auth-submit-btn">
               Sign In
             </button>
           </form>

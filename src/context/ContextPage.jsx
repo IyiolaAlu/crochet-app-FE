@@ -23,10 +23,13 @@ const ContextPage = ({ children }) => {
     try {
       const res = await axios.get("https://crochet-app-backend.onrender.com/api/users/me", {
         withCredentials: true,
-      });
+      })
 
+      console.log("2. Response status:", res.status);
+    console.log("3. Response data:", res.data);
+    console.log("4. Response data type:", typeof res.data);
       if (res.data) {
-        setuser(res.data.user);
+        setuser(res.data);
         setIsLoggedIn(true);
       } else {
         setuser(null);
