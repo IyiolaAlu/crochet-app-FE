@@ -34,11 +34,14 @@ const FormPage = () => {
     setLoading(true);
     setSuccess(false);
     try {
+      const token = localStorage.getItem('token')
       const res = await fetch("https://crochet-app-backend.onrender.com/api/products", {
         method: "POST",
         body: JSON.stringify(newForm),
-        headers: { "Content-Type": "application/json" },
-        credentials: 'include'
+        headers: { 
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
       });
       const data = await res.json();
       if (!res.ok) {
@@ -50,7 +53,6 @@ const FormPage = () => {
         setLoading(false);
         seterror(null);
         setSuccess(true);
-        // Clear form
         setform({ name: "", price: "", quantity: "", description: "" });
         setImage(null);
         setImagePreview(null);
